@@ -1,9 +1,5 @@
-const axios = require('axios');
-axios.get('http://localhost:3000')
-  .then(function (response) {
-    console.log(response.data);
-    console.log(response.status);
-    console.log(response.statusText);
-    console.log(response.headers);
-    console.log(response.config);
-  });
+const
+    io = require("socket.io-client"),
+    ioClient = io.connect("https://ies-iot-1.herokuapp.com:8000");
+
+ioClient.on("test", (msg) => console.log(msg));
