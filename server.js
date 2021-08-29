@@ -1,17 +1,9 @@
-const express = require('express');
-const { Server } = require("socket.io");
-const io = new Server(server);
-const app = express();
-const port = 8080;
+const
+    {Server} = require("socket.io"),
+    server = new Server(8000);
 
-app.get('/', (req, res) => {
-  res.send('IOT1')
-})
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
+server.on('connection', function(socket){
+  console.info(`Client connected [id=${socket.id}]`);
+  socket.emit('test', 'uma mensagem');
 });
-
-app.listen(port, () => {
-  console.log(`Example app listening at https://ies-iot-1.herokuapp.com:8080`)
-})
