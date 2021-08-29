@@ -7,5 +7,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening at https://ies-iot-1.herokuapp.com:${port}`)
+  console.log(`Example app listening at https://ies-iot-1.herokuapp.com:8080`)
 })
