@@ -1,11 +1,10 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+const
+    {Server} = require("socket.io"),
+    server = new Server(8000);
 
-app.get('/', (req, res) => {
-  res.send('IOT1')
-})
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+server.on('connection', function(socket){
+  console.info(`Client connected [id=${socket.id}]`);
+  socket.emit('test', 'uma mensagem');
+});
+
