@@ -3,16 +3,16 @@ var net = require('net');
 var fs = require('fs');
 var nameServer = 'servidor_bianca';
 
-const connect = (ip, port, name) => {
+const connect = (device) => {
 	var client = new net.Socket();
 	
-	client.connect(parseInt(port), ip, function() {
-		console.log('Connected');
-		client.write(nameServer + ' CONECTAR ' + name);
+	client.connect(parseInt(device[2]), device[1], function() {
+		var string = (nameServer + ' CONECTAR ' + device[0]).toString();
+		client.write(string);
 	});
 
 	client.on('data', function(data) {
-		console.log('Received: ' + data);
+		console.log(data.toString());
 		client.destroy();
 	});
 
@@ -42,7 +42,7 @@ prompt.get('initialCommand', function (err, result) {
 			});
 
 			if(existDevice){
-				connect(existDevice.split(' ')[1], existDevice.split(' ')[2]);
+				connect(existDevice.split(' '));
 			}else{
 				console.log('Device nâo está listado');
 			}
